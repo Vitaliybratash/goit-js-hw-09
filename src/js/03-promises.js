@@ -1,9 +1,5 @@
-const refs = {
-  delay: document.querySelector('[name="delay"]'),
-  step: document.querySelector('[name="step"]'),
-  amount: document.querySelector('[name="amount"]'),
-  form: document.querySelector('.form'),
-};
+const form = document.querySelector('.form')
+
 
 function createPromise(position, delay) {
   return new Promise((resolve, reject) => {
@@ -23,12 +19,12 @@ function createPromise(position, delay) {
       console.log(`❌ Rejected promise ${position} in ${delay}ms`);
     });
 }
-refs.form.addEventListener('submit', evt => {
+form.addEventListener('submit', evt => {
   evt.preventDefault();
 
-  let delay = Number(refs.delay.value);
-  const step = Number(refs.step.value);
-  const amount = Number(refs.amount.value);
+  let delay = Number(form.elements.delay.value);
+  const step = Number(form.elements.step.value);
+  const amount = Number(form.elements.amount.value);
 
   for (let i = 0; i < amount; i +=1) {
     createPromise(i+1, delay)

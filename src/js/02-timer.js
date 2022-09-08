@@ -41,15 +41,18 @@ function onButtonClick() {
   interval = setInterval(() => {
     const ms = selectedDate - new Date();
     timer = convertMs(ms);
-    refs.dataDays.textContent = addLeadingZero(timer.days)
-    refs.dataHours.textContent = addLeadingZero(timer.hours)
-    refs.dataMinutes.textContent = addLeadingZero(timer.minutes)
-    refs.dataSeconds.textContent = addLeadingZero(timer.seconds)
+    if (
+      Object.values(timer).filter(el => el=== 0).length ===Object.values(timer).length) {
+      clearInterval(interval);
+    }
+    refs.dataDays.textContent = addLeadingZero(timer.days);
+    refs.dataHours.textContent = addLeadingZero(timer.hours);
+    refs.dataMinutes.textContent = addLeadingZero(timer.minutes);
+    refs.dataSeconds.textContent = addLeadingZero(timer.seconds);
   }, 1000);
 }
 function addLeadingZero(value) {
   return value.toString().padStart(2, '0');
-
 }
 function convertMs(ms) {
   const second = 1000;

@@ -10,8 +10,10 @@ start.addEventListener('click', () => {
     document.body.style.backgroundColor = getRandomHexColor();
   }, 1000);
   start.disabled = true;
+  stop.disabled = false
 });
 stop.addEventListener('click', () => {
   clearInterval(interval);
   start.disabled = false;
+  stop.disabled = true
 });
