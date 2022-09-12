@@ -2,10 +2,10 @@ import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
 
 const refs = {
-  dataDays: document.querySelector('[data-days]'),
-  dataHours: document.querySelector('[data-hours]'),
-  dataMinutes: document.querySelector('[data-minutes]'),
-  dataSeconds: document.querySelector('[data-seconds]'),
+  days: document.querySelector('[data-days]'),
+  hours: document.querySelector('[data-hours]'),
+  minutes: document.querySelector('[data-minutes]'),
+  seconds: document.querySelector('[data-seconds]'),
 };
 
 const start = document.querySelector('[data-start]');
@@ -45,10 +45,9 @@ function onButtonClick() {
       Object.values(timer).filter(el => el=== 0).length ===Object.values(timer).length) {
       clearInterval(interval);
     }
-    refs.dataDays.textContent = addLeadingZero(timer.days);
-    refs.dataHours.textContent = addLeadingZero(timer.hours);
-    refs.dataMinutes.textContent = addLeadingZero(timer.minutes);
-    refs.dataSeconds.textContent = addLeadingZero(timer.seconds);
+    Object.keys(refs).forEach(prop => {
+      refs[prop].textContent = addLeadingZero(timer[prop]);
+    });
   }, 1000);
 }
 function addLeadingZero(value) {

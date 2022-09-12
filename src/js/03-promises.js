@@ -1,6 +1,9 @@
 const form = document.querySelector('.form')
-
-
+const inputsValues = {
+ delay: 0,
+  step: 0,
+  amount: 0
+}
 function createPromise(position, delay) {
   return new Promise((resolve, reject) => {
     const shouldResolve = Math.random() > 0.3;
@@ -21,14 +24,10 @@ function createPromise(position, delay) {
 }
 form.addEventListener('submit', evt => {
   evt.preventDefault();
-
-  let delay = Number(form.elements.delay.value);
-  const step = Number(form.elements.step.value);
-  const amount = Number(form.elements.amount.value);
-
-  for (let i = 0; i < amount; i +=1) {
-    createPromise(i+1, delay)
-    delay += step
+  Object.keys(inputsValues).forEach(key => inputsValues[key] = Number(form.elements[key].value))
+  
+  for (let i = 0; i < inputsValues.amount; i +=1) {
+    createPromise(i+1, inputsValues.delay)
+    inputsValues.delay += inputsValues.step
   }
 });
-
